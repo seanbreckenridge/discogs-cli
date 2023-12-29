@@ -8,8 +8,8 @@ import sys
 from prompt_toolkit import prompt
 from prompt_toolkit.filters import Always
 from prompt_toolkit.history import InMemoryHistory
-from prompt_toolkit.layout.lexers import PygmentsLexer
-from prompt_toolkit.styles.from_pygments import style_from_pygments
+from prompt_toolkit.lexers import PygmentsLexer
+from prompt_toolkit.styles.pygments import style_from_pygments_cls
 from pygments.styles import get_style_by_name
 
 from .__init__ import __version__
@@ -39,7 +39,7 @@ def execute(cmd):
 
 def cli():
     history = InMemoryHistory()
-    style = style_from_pygments(get_style_by_name('monokai'))
+    style = style_from_pygments_cls(get_style_by_name('monokai'))
     lexer = PygmentsLexer(DiscogsCliLexer)
     completer = Completer(fuzzy_match=False, text_utils=TextUtils())
 
